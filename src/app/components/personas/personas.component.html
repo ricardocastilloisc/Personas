@@ -1,1 +1,26 @@
-<p>personas works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+		<table class="table table-image">
+		  <thead>
+		    <tr>
+		      <th scope="col">Nombre</th>
+		      <th scope="col">Edad</th>
+		      <th scope="col">Sexo</th>
+		      <th scope="col">Documento</th>
+		    </tr>
+		  </thead>
+		  <tbody *ngIf="ListaPersona$ | async as ListaPersonas">
+		    <tr *ngFor="let persona of ListaPersonas">
+		      <td>{{persona.nombre}}}</td>
+		      <td>{{persona.edad}}}</td>
+		      <td>{{persona.genero}</td>
+          <td class="w-25">
+			      <img [src]="persona.img? persona.img:null" class="img-fluid img-thumbnail" alt="Sheep">
+		      </td>
+		    </tr>
+		  </tbody>
+		</table>
+    </div>
+  </div>
+</div>
