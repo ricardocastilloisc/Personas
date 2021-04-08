@@ -1,25 +1,28 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+
 import { Persona } from '../models/persona.model';
 import { crearPersona, setPersona } from './personas.actions';
 
-export interface State {
+
+export interface State{
   personas: Persona[];
 }
 
+
+
 export const estadoInicial: State = {
-  personas: [],
-};
+  personas: []
+}
+
 
 const _PersonaReducer = createReducer(
   estadoInicial,
-  on(crearPersona, (state, { persona }) => ({
-    ...state,
-    personas: [...state.personas, persona],
-  })),
-  on(setPersona, (state, { pesonas }) => ({ ...state, persona: pesonas }))
+  on(crearPersona, (state, { persona }) => ({ ...state, personas: [...state.personas, persona ] })),
+  on(setPersona, (state, { personas }) => ({ ...state, personas: personas})),
+
 );
 
-export let PersonaReducer = (state, action) => {
+export const PersonaReducer = (state, action) => {
   return _PersonaReducer(state, action);
 };
