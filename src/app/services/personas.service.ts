@@ -17,8 +17,9 @@ export class PersonasService {
   }
 
   getPersonas = () => {
-    if (localStorage.getItem('personas')) {
-      console.log(localStorage.getItem('personas'));
+    if (localStorage.getItem('personas'))
+    {
+      this.store.dispatch(setPersona({ personas: JSON.parse(localStorage.getItem('personas')) }));
     } else {
       this.PesonasSub = this.http
         .get('https://randomuser.me/api/?results=2')
@@ -38,7 +39,6 @@ export class PersonasService {
           res.forEach(({ genero, nombre, edad, img }) =>
             arrayPersonas.push(new Persona(genero, nombre, edad, img))
           );
-
           this.store.dispatch(setPersona({ personas: arrayPersonas }));
           localStorage.setItem('personas', JSON.stringify(arrayPersonas));
         });
