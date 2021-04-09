@@ -18,7 +18,7 @@ export class FormularioComponent implements OnInit {
 
   ngOnInit(): void {
     this.personaForm = this.fb.group({
-      genero: ['masculino', Validators.required],
+      genero: ['', Validators.required],
       nombre: ['', Validators.required],
       edad: ['', Validators.required],
     });
@@ -79,5 +79,7 @@ export class FormularioComponent implements OnInit {
     }
     this.personasService.addPersonas({...this.personaForm.value, img: this.imgBase64Path});
     this.personaForm.reset();
+    this.imgBase64Path = null;
   };
 }
+
