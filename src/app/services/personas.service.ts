@@ -50,7 +50,6 @@ export class PersonasService {
   };
 
   addPersonas = (persona: Persona) => {
-
     let arrayTemporalPersona = JSON.parse(localStorage.getItem('personas'));
     arrayTemporalPersona.push(persona);
 
