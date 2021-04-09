@@ -12,11 +12,12 @@
 		  </thead>
 		  <tbody *ngIf="ListaPersona$ | async as ListaPersonas">
 		    <tr *ngFor="let persona of ListaPersonas">
-		      <td>{{persona.nombre}}}</td>
-		      <td>{{persona.edad}}}</td>
-		      <td>{{persona.genero}</td>
+		      <td>{{persona.nombre}}</td>
+		      <td>{{persona.edad}}</td>
+		      <td>{{persona.genero}}</td>
           <td class="w-25">
-			      <img [src]="persona.img? persona.img:null" class="img-fluid img-thumbnail" alt="Sheep">
+			      <img  *ngIf="persona.img"
+            [src]="persona.img? persona.img:null" class="img-fluid img-thumbnail" alt="Sheep">
 		      </td>
 		    </tr>
 		  </tbody>

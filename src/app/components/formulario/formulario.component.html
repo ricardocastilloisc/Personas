@@ -1,1 +1,46 @@
-<p>formulario works!</p>
+<div class="container">
+  <form [formGroup]="personaForm" (ngSubmit)="agregar()">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Nombre</label>
+      <input
+        formControlName="nombre"
+        type="text"
+        class="form-control"
+        placeholder="Nombre"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Edad</label>
+      <input
+        formControlName="edad"
+        type="number"
+        class="form-control"
+        placeholder="Edad"
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Sexo</label>
+      <select formControlName="genero" class="form-control">
+        <option>masculino</option>
+        <option>femenino</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Documento (Imagen)</label>
+      <input
+        formControlName="img"
+        type="file"
+        class="form-control-file"
+        id="exampleFormControlFile1"
+      />
+    </div>
+
+    <div class="form-group">
+      <button
+      [disabled]="personaForm.invalid"
+      type="submit" class="btn btn-primary">Agregar</button>
+    </div>
+  </form>
+</div>

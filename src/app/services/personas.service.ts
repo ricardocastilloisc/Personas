@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Persona } from '../models/persona.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reduce';
-import { setPersona } from '../redux/personas.actions';
+import { setPersona, crearPersona } from '../redux/personas.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +17,10 @@ export class PersonasService {
   }
 
   getPersonas = () => {
-    if (localStorage.getItem('personas'))
-    {
-      this.store.dispatch(setPersona({ personas: JSON.parse(localStorage.getItem('personas')) }));
+    if (localStorage.getItem('personas')) {
+      this.store.dispatch(
+        setPersona({ personas: JSON.parse(localStorage.getItem('personas')) })
+      );
     } else {
       this.PesonasSub = this.http
         .get('https://randomuser.me/api/?results=2')
@@ -46,5 +47,15 @@ export class PersonasService {
         this.PesonasSub.unsubscribe();
       }, 10000);
     }
+  };
+
+  addPersonas = (persona: Persona) => {
+
+    let arrayTemporalPersona = JSON.parse(localStorage.getItem('personas'));
+    arrayTemporalPersona.push(persona);
+
+    localStorage.setItem('personas', JSON.stringify(arrayTemporalPersona));
+
+    this.store.dispatch(crearPersona({ persona: persona }));
   };
 }
