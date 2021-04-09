@@ -24,7 +24,7 @@ export class FormularioComponent implements OnInit {
     });
   }
 
-  fileChangeEvent(fileInput: any) {
+  fileChangeEvent = (fileInput: any) => {
     this.imageError = null;
     if (fileInput.target.files && fileInput.target.files[0]) {
       // Size Filter Bytes
